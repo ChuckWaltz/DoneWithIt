@@ -1,17 +1,15 @@
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import ViewImageScreen from "./app/screens/ViewImageScreen";
+import Screen from "./app/components/Screen";
+import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
   return (
-    <View style={styles.main}>
-      {/* <AppCard
-        title="This is a title!"
-        subTitle="$100"
-        image={require("./app/assets/jacket.jpg")}
-      ></AppCard> */}
-      <ViewImageScreen />
-    </View>
+    <Screen>
+      <View style={styles.main}>
+        <MessagesScreen />
+      </View>
+    </Screen>
   );
 }
 

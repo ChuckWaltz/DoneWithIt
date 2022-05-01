@@ -16,8 +16,14 @@ export default function WelcomeScreen() {
         <AppText type="header">Super Duper App</AppText>
       </View>
 
-      <AppButton color="primary">Login</AppButton>
-      <AppButton color="secondary" style={{ marginTop: 20 }}>
+      <AppButton color="primary" onPress={() => console.log("Login")}>
+        Login
+      </AppButton>
+      <AppButton
+        color="secondary"
+        onPress={() => console.log("Register")}
+        style={{ marginTop: 20 }}
+      >
         Register
       </AppButton>
     </ImageBackground>

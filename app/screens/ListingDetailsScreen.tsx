@@ -1,5 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
 import AppText from "../components/AppText";
+import ListItem from "../components/ListItem";
 import theme from "../config/theme";
 
 export default function ListDetailsScreen() {
@@ -14,16 +15,12 @@ export default function ListDetailsScreen() {
         >
           $100
         </AppText>
-        <View style={styles.sellerInfo}>
-          <Image
-            source={require("../assets/mosh.jpg")}
-            style={styles.sellerImage}
-          />
-          <View style={styles.sellerInfoText}>
-            <AppText type="body">Seller Name</AppText>
-            <AppText>5 Listings</AppText>
-          </View>
-        </View>
+        {/* <ListItem
+          title="Test Title"
+          description="This is a description"
+          image={require("../assets/mosh.jpg")}
+          onPress={() => console.log("Pressed")}
+        ></ListItem> */}
       </View>
     </View>
   );
@@ -41,15 +38,5 @@ const styles = StyleSheet.create({
   detailsContainer: {
     paddingTop: 15,
     paddingHorizontal: 20,
-  },
-  sellerInfo: { flexDirection: "row", marginTop: 20 },
-  sellerInfoText: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  sellerImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
   },
 });

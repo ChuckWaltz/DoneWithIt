@@ -17,7 +17,11 @@ export default function ViewImageScreen() {
         onPress={() => console.log("close")}
         style={styles.closeButton}
       >
-        <MaterialCommunityIcons name="close" size={32} color="white" />
+        <MaterialCommunityIcons
+          name="close"
+          size={theme.iconButtonSize}
+          color="white"
+        />
       </Pressable>
       <Pressable
         onPress={() => console.log("delete")}
@@ -25,7 +29,7 @@ export default function ViewImageScreen() {
       >
         <MaterialCommunityIcons
           name="trash-can-outline"
-          size={32}
+          size={theme.iconButtonSize}
           color="tomato"
         />
       </Pressable>

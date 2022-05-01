@@ -1,22 +1,24 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import theme from "../config/theme";
 
 export default function AppButton({
   children,
-  color,
+  onPress,
+  color = "primary",
   style,
 }: {
-  children: any;
-  color: "primary" | "secondary";
+  children: React.ReactNode;
+  onPress: () => void;
+  color?: "primary" | "secondary";
   style?: any;
 }) {
   return (
-    <Pressable
-      onPress={() => console.log("Pressed")}
+    <TouchableOpacity
+      onPress={onPress}
       style={createStyles(color, style).button}
     >
       <Text style={createStyles(color, style).text}>{children}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
