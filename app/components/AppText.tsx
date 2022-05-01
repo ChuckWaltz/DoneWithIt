@@ -28,24 +28,24 @@ const getFontSize = (platform: "ios" | "android", type: TextType): number => {
     case "ios":
       switch (type) {
         case "header":
-          return 26;
+          return 28;
         case "subheader":
           return 22;
         case "body":
-          return 18;
-        default:
           return 16;
+        default:
+          return 12;
       }
     case "android":
       switch (type) {
         case "header":
-          return 32;
+          return 26;
         case "subheader":
-          return 22;
+          return 20;
         case "body":
           return 18;
         default:
-          return 16;
+          return 12;
       }
   }
 };
@@ -54,6 +54,8 @@ const createStyles = (type: TextType, inputStyles: any) =>
   StyleSheet.create({
     text: {
       color: theme.black,
+      fontWeight: type === "header" || "subheader" ? "700" : "500",
+      textTransform: type === "header" || "subheader" ? "capitalize" : "none",
       ...platformStyles(type),
       ...inputStyles,
     },

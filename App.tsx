@@ -6,8 +6,8 @@ export default function App() {
   return (
     <View style={styles.main}>
       <AppCard
-        title="test"
-        subTitle="test 2"
+        title="This is a title!"
+        subTitle="$100"
         image={require("./app/assets/jacket.jpg")}
       ></AppCard>
     </View>
@@ -16,6 +16,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
+    padding: 20,
+    paddingTop: 40,
+    backgroundColor: "#f8f4f4",
   },
 });

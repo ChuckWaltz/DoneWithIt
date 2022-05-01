@@ -1,4 +1,5 @@
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import theme from "../config/theme";
 import AppText from "./AppText";
 
 export default function AppCard({
@@ -13,8 +14,15 @@ export default function AppCard({
   return (
     <View style={styles.container}>
       <Image resizeMode="cover" source={image} style={styles.image} />
-      <AppText type="header">{title}</AppText>
-      <AppText type="body">{subTitle}</AppText>
+      <View style={styles.details}>
+        <AppText type="subheader">{title}</AppText>
+        <AppText
+          type="body"
+          style={{ color: theme.secondary, fontWeight: "bold", marginTop: 5 }}
+        >
+          {subTitle}
+        </AppText>
+      </View>
     </View>
   );
 }
@@ -28,7 +36,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 2,
     elevation: 3,
-    padding: 20,
+    paddingBottom: 10,
   },
   image: {
     width: "100%",
@@ -36,5 +44,9 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+  },
+  details: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 });
