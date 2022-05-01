@@ -6,7 +6,7 @@ type TextType = "header" | "subheader" | "body";
 
 type AppTextInput = {
   children: any;
-  type: TextType;
+  type?: TextType;
   style?: StyleProp<TextStyle>;
 };
 
@@ -14,7 +14,7 @@ export default function AppText({ children, type, style }: AppTextInput) {
   return <Text style={createStyles(type, style).text}>{children}</Text>;
 }
 
-const platformStyles = (type: TextType) =>
+const platformStyles = (type?: TextType) =>
   Platform.select({
     ios: {
       fontSize: getFontSize("ios", type),
@@ -23,14 +23,14 @@ const platformStyles = (type: TextType) =>
     android: { fontSize: getFontSize("android", type), fontFamily: "Roboto" },
   });
 
-const getFontSize = (platform: "ios" | "android", type: TextType): number => {
+const getFontSize = (platform: "ios" | "android", type?: TextType): number => {
   switch (platform) {
     case "ios":
       switch (type) {
         case "header":
-          return 28;
+          return 26;
         case "subheader":
-          return 22;
+          return 20;
         case "body":
           return 16;
         default:
@@ -43,18 +43,18 @@ const getFontSize = (platform: "ios" | "android", type: TextType): number => {
         case "subheader":
           return 20;
         case "body":
-          return 18;
+          return 16;
         default:
           return 12;
       }
   }
 };
 
-const createStyles = (type: TextType, inputStyles: any) =>
+const createStyles = (type?: TextType, inputStyles?: any) =>
   StyleSheet.create({
     text: {
       color: theme.black,
-      fontWeight: type === "header" || "subheader" ? "700" : "500",
+      fontWeight: type === "header" || "subheader" ? "700" : "400",
       textTransform: type === "header" || "subheader" ? "capitalize" : "none",
       ...platformStyles(type),
       ...inputStyles,

@@ -1,23 +1,23 @@
-import { StyleSheet, View } from "react-native";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
 
-import AppCard from "./app/components/AppCard";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
 
 export default function App() {
   return (
     <View style={styles.main}>
-      <AppCard
+      {/* <AppCard
         title="This is a title!"
         subTitle="$100"
         image={require("./app/assets/jacket.jpg")}
-      ></AppCard>
+      ></AppCard> */}
+      <ViewImageScreen />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
-    padding: 20,
-    paddingTop: 40,
+    flex: 1,
     backgroundColor: "#f8f4f4",
   },
 });
