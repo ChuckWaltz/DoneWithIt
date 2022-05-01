@@ -13,7 +13,7 @@ export default function WelcomeScreen() {
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <AppText style={styles.logoText}>Super Duper App</AppText>
+        <AppText type="header">Super Duper App</AppText>
       </View>
 
       <AppButton color="primary">Login</AppButton>
@@ -42,10 +42,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 10,
-  },
-  logoText: {
-    fontSize: 24,
-    fontWeight: "700",
   },
   loginButton: {
     backgroundColor: theme.primary,
