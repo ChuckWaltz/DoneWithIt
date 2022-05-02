@@ -1,8 +1,5 @@
-import { StyleSheet, Text, Platform, StyleProp, TextStyle } from "react-native";
-
-import theme from "../config/theme";
-
-type TextType = "header" | "subheader" | "body";
+import { Text, StyleProp, TextStyle } from 'react-native';
+import theme, { TextType } from '../config/theme';
 
 type AppTextInput = {
   children: any;
@@ -10,53 +7,10 @@ type AppTextInput = {
   style?: StyleProp<TextStyle>;
 };
 
-export default function AppText({ children, type, style }: AppTextInput) {
-  return <Text style={createStyles(type, style).text}>{children}</Text>;
+export default function AppText({
+  children,
+  type = 'body',
+  style = undefined,
+}: AppTextInput) {
+  return <Text style={[theme.text[type], style]}>{children}</Text>;
 }
-
-const platformStyles = (type?: TextType) =>
-  Platform.select({
-    ios: {
-      fontSize: getFontSize("ios", type),
-      fontFamily: "Avenir",
-    },
-    android: { fontSize: getFontSize("android", type), fontFamily: "Roboto" },
-  });
-
-const getFontSize = (platform: "ios" | "android", type?: TextType): number => {
-  switch (platform) {
-    case "ios":
-      switch (type) {
-        case "header":
-          return 26;
-        case "subheader":
-          return 20;
-        case "body":
-          return 16;
-        default:
-          return 12;
-      }
-    case "android":
-      switch (type) {
-        case "header":
-          return 26;
-        case "subheader":
-          return 20;
-        case "body":
-          return 16;
-        default:
-          return 12;
-      }
-  }
-};
-
-const createStyles = (type?: TextType, inputStyles?: any) =>
-  StyleSheet.create({
-    text: {
-      color: theme.black,
-      fontWeight: type === "header" || "subheader" ? "700" : "400",
-      textTransform: type === "header" || "subheader" ? "capitalize" : "none",
-      ...platformStyles(type),
-      ...inputStyles,
-    },
-  });

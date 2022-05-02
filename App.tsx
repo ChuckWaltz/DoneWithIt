@@ -1,14 +1,14 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from 'react-native';
 
-import Screen from "./app/components/Screen";
-import ListingsScreen from "./app/screens/ListingsScreen";
+import Screen from './app/components/Screen';
+import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
 
 export default function App() {
   return (
     <Screen>
-      <View style={styles.main}>
-        <ListingsScreen />
-      </View>
+      <AppPicker icon="apps" placeholder="Category" />
+      <AppTextInput icon="email" placeholder="Email" />
     </Screen>
   );
 }
@@ -16,6 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: "#f8f4f4",
+    backgroundColor: '#f8f4f4',
   },
 });

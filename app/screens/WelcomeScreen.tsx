@@ -1,27 +1,27 @@
-import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
-import AppButton from "../components/AppButton";
-import AppText from "../components/AppText";
+import { StyleSheet, View, Image, ImageBackground, Text } from 'react-native';
 
-import theme from "../config/theme";
+import AppButton from '../components/AppButton';
+import AppText from '../components/AppText';
+import theme from '../config/theme';
 
 export default function WelcomeScreen() {
   return (
     <ImageBackground
       style={styles.background}
-      source={require("../assets/background.jpg")}
+      source={require('../assets/background.jpg')}
       blurRadius={5}
     >
       <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+        <Image style={styles.logo} source={require('../assets/logo-red.png')} />
         <AppText type="header">Super Duper App</AppText>
       </View>
 
-      <AppButton color="primary" onPress={() => console.log("Login")}>
+      <AppButton color="primary" onPress={() => console.log('Login')}>
         Login
       </AppButton>
       <AppButton
         color="secondary"
-        onPress={() => console.log("Register")}
+        onPress={() => console.log('Register')}
         style={{ marginTop: 20 }}
       >
         Register
@@ -33,16 +33,16 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    position: "relative",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    position: 'relative',
     padding: 20,
   },
   logoContainer: {
-    alignItems: "center",
-    alignSelf: "center",
-    position: "absolute",
-    top: "20%",
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
+    top: '20%',
   },
   logo: {
     width: 100,
@@ -50,13 +50,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   loginButton: {
-    backgroundColor: theme.primary,
-    width: "100%",
+    backgroundColor: theme.colors.primary,
+    width: '100%',
     height: 70,
   },
   registerButton: {
-    backgroundColor: theme.secondary,
-    width: "100%",
+    backgroundColor: theme.colors.secondary,
+    width: '100%',
     height: 70,
   },
 });

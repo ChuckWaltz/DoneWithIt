@@ -1,25 +1,25 @@
-import { useState } from "react";
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
-import AppCard from "../components/AppCard";
+import { useState } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import AppCard from '../components/AppCard';
 
 const listings = [
   {
     id: 1,
-    title: "Test 1",
-    subTitle: "Test 1 Subtitle",
-    image: require("../assets/jacket.jpg"),
+    title: 'Test 1',
+    subTitle: 'Test 1 Subtitle',
+    image: require('../assets/jacket.jpg'),
   },
   {
     id: 2,
-    title: "Test 2",
-    subTitle: "Test 2 Subtitle",
-    image: require("../assets/jacket.jpg"),
+    title: 'Test 2',
+    subTitle: 'Test 2 Subtitle',
+    image: require('../assets/jacket.jpg'),
   },
   {
     id: 3,
-    title: "Test 3",
-    subTitle: "Test 3 Subtitle",
-    image: require("../assets/jacket.jpg"),
+    title: 'Test 3',
+    subTitle: 'Test 3 Subtitle',
+    image: require('../assets/jacket.jpg'),
   },
 ];
 
@@ -27,30 +27,27 @@ const ListingsScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   return (
-    <ScrollView style={styles.container}>
-      <FlatList
-        data={listings}
-        keyExtractor={(message) => message.id.toString()}
-        renderItem={(listingInfo) => {
-          const listing = listingInfo.item;
-          return (
-            <AppCard
-              title={listing.title}
-              subTitle={listing.subTitle}
-              image={listing.image}
-            />
-          );
-        }}
-        ItemSeparatorComponent={() => <View style={{ height: 30 }}></View>}
-        refreshing={refreshing}
-      ></FlatList>
-    </ScrollView>
+    <FlatList
+      data={listings}
+      keyExtractor={(message) => message.id.toString()}
+      renderItem={({ item }) => {
+        return (
+          <AppCard
+            title={item.title}
+            subTitle={item.subTitle}
+            image={item.image}
+          />
+        );
+      }}
+      ItemSeparatorComponent={() => <View style={{ height: 20 }}></View>}
+      refreshing={refreshing}
+      contentContainerStyle={styles.container}
+    ></FlatList>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
 });

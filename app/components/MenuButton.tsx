@@ -1,9 +1,8 @@
-import { TouchableHighlight } from "react-native-gesture-handler";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
-import AppText from "./AppText";
-import { StyleSheet, View } from "react-native";
-import theme from "../config/theme";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from 'react';
+import AppText from './AppText';
+import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import theme from '../config/theme';
 
 const MenuButton = ({
   children,
@@ -37,13 +36,13 @@ const MenuButton = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
-    backgroundColor: theme.white,
+    backgroundColor: theme.colors.white,
   },
   icon: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: 'dodgerblue',
     padding: 10,
     borderRadius: 50,
   },
