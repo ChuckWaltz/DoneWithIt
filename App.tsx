@@ -4,10 +4,25 @@ import Screen from './app/components/Screen';
 import AppTextInput from './app/components/AppTextInput';
 import AppPicker from './app/components/AppPicker';
 
+const listItems = [
+  {
+    id: 1,
+    label: 'Item 1',
+  },
+  {
+    id: 2,
+    label: 'Item 2',
+  },
+  {
+    id: 3,
+    label: 'Item 3',
+  },
+];
+
 export default function App() {
   return (
     <Screen>
-      <AppPicker icon="apps" placeholder="Category" />
+      <AppPicker items={listItems} icon="apps" placeholder="Category" />
       <AppTextInput icon="email" placeholder="Email" />
     </Screen>
   );
