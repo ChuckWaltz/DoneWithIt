@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList } from "react-native";
 import { useState } from "react";
 
 import ListItem from "../components/ListItem";

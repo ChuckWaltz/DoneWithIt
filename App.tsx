@@ -1,13 +1,13 @@
 import { StyleSheet, View } from "react-native";
 
 import Screen from "./app/components/Screen";
-import MessagesScreen from "./app/screens/MessagesScreen";
+import ListingsScreen from "./app/screens/ListingsScreen";
 
 export default function App() {
   return (
     <Screen>
       <View style={styles.main}>
-        <MessagesScreen />
+        <ListingsScreen />
       </View>
     </Screen>
   );
