@@ -5,16 +5,16 @@ import {
   StatusBar,
   StyleSheet,
   View,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import theme from "../config/theme";
+import theme from '../config/theme';
 
 export default function ViewImageScreen() {
   return (
     <View style={styles.background}>
       <Pressable
-        onPress={() => console.log("close")}
+        onPress={() => console.log('close')}
         style={styles.closeButton}
       >
         <MaterialCommunityIcons
@@ -24,7 +24,7 @@ export default function ViewImageScreen() {
         />
       </Pressable>
       <Pressable
-        onPress={() => console.log("delete")}
+        onPress={() => console.log('delete')}
         style={styles.deleteButton}
       >
         <MaterialCommunityIcons
@@ -36,7 +36,7 @@ export default function ViewImageScreen() {
       <Image
         style={styles.image}
         resizeMode="contain"
-        source={require("../assets/chair.jpg")}
+        source={require('../assets/chair.jpg')}
       />
     </View>
   );
@@ -44,24 +44,24 @@ export default function ViewImageScreen() {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: theme.black,
+    backgroundColor: theme.colors.black,
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   closeButton: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     top: 40,
     left: 20,
   },
   deleteButton: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     top: 40,
     right: 20,
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
 });

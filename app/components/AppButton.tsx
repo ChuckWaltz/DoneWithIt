@@ -1,15 +1,15 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import theme from "../config/theme";
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import theme from '../config/theme';
 
 export default function AppButton({
   children,
   onPress,
-  color = "primary",
+  color = 'primary',
   style,
 }: {
   children: React.ReactNode;
   onPress: () => void;
-  color?: "primary" | "secondary";
+  color?: 'primary' | 'secondary';
   style?: any;
 }) {
   return (
@@ -26,21 +26,21 @@ const createStyles = (color: string, style: any) =>
   StyleSheet.create({
     button: {
       backgroundColor:
-        color === "primary"
-          ? theme.primary
-          : color === "secondary"
-          ? theme.secondary
-          : theme.primary,
+        color === 'primary'
+          ? theme.colors.primary
+          : color === 'secondary'
+          ? theme.colors.secondary
+          : theme.colors.primary,
       paddingVertical: 10,
       paddingHorizontal: 20,
       borderRadius: 100,
-      width: "100%",
-      alignItems: "center",
+      width: '100%',
+      alignItems: 'center',
       ...style,
     },
     text: {
-      color: "white",
-      textTransform: "uppercase",
+      color: 'white',
+      textTransform: 'uppercase',
       fontSize: 16,
     },
   });

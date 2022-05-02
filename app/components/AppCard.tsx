@@ -1,6 +1,6 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
-import theme from "../config/theme";
-import AppText from "./AppText";
+import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import theme from '../config/theme';
+import AppText from './AppText';
 
 export default function AppCard({
   title,
@@ -18,7 +18,11 @@ export default function AppCard({
         <AppText type="subheader">{title}</AppText>
         <AppText
           type="body"
-          style={{ color: theme.secondary, fontWeight: "bold", marginTop: 5 }}
+          style={{
+            color: theme.colors.secondary,
+            fontWeight: 'bold',
+            marginTop: 5,
+          }}
         >
           {subTitle}
         </AppText>
@@ -29,8 +33,8 @@ export default function AppCard({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
-    backgroundColor: "white",
+    flexDirection: 'column',
+    backgroundColor: 'white',
     borderRadius: 20,
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.6,
@@ -39,9 +43,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 200,
-    resizeMode: "cover",
+    resizeMode: 'cover',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
