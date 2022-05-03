@@ -18,7 +18,8 @@ type Props = {
 };
 
 const AppPicker = ({ icon, items, placeholder }: Props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [selection, setSelection] = useState<string | undefined>();
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   return (
     <>
@@ -36,7 +37,7 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>{selection ?? placeholder}</AppText>
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -53,7 +54,10 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
             renderItem={({ item }) => (
               <TouchableHighlight
                 underlayColor={theme.colors.lightish}
-                onPress={() => console.log(item)}
+                onPress={() => {
+                  setSelection(item.label);
+                  setModalVisible(false);
+                }}
                 style={styles.pickerItem}
               >
                 <AppText>{item.label}</AppText>
@@ -61,19 +65,18 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
             )}
           ></FlatList>
         </View>
-        <AppButton
-          onPress={() => setModalVisible(false)}
-          style={styles.closeButton}
-        >
-          Close
-        </AppButton>
+        <View style={styles.buttonWrapper}>
+          <AppButton onPress={() => setModalVisible(false)} color="primary">
+            Close
+          </AppButton>
+        </View>
       </Modal>
     </>
   );
 };
 const styles = StyleSheet.create({
-  closeButton: {
-    backgroundColor: theme.colors.primary,
+  buttonWrapper: {
+    paddingHorizontal: 20,
   },
   container: {
     backgroundColor: theme.colors.light,
@@ -88,10 +91,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   listContainer: {
-    paddingVertical: 20,
+    paddingVertical: 40,
   },
   pickerItem: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   text: {
     flex: 1,

@@ -22,15 +22,16 @@ const listItems = [
 export default function App() {
   return (
     <Screen>
-      <AppPicker items={listItems} icon="apps" placeholder="Category" />
-      <AppTextInput icon="email" placeholder="Email" />
+      <View style={styles.main}>
+        <AppPicker items={listItems} icon="apps" placeholder="Category" />
+        <AppTextInput icon="email" placeholder="Email" />
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
-    backgroundColor: "#f8f4f4",
+    padding: 20,
   },
 });
