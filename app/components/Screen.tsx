@@ -1,7 +1,9 @@
-import { SafeAreaView, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { SafeAreaView, StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
-const Screen = ({ children }: { children: React.ReactNode }) => {
+type Props = { children: React.ReactNode };
+
+const Screen = ({ children }: Props) => {
   return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
 };
 

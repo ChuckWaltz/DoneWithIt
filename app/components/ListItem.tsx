@@ -4,12 +4,20 @@ import {
   StyleSheet,
   TouchableHighlight,
   View,
-} from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import AppText from './AppText';
-import theme from '../config/theme';
+import AppText from "./AppText";
+import theme from "../config/theme";
+
+type Props = {
+  title: string;
+  description: string;
+  image: ImageSourcePropType;
+  onPress: () => void;
+  renderRightActions: () => React.ReactNode;
+};
 
 const ListItem = ({
   title,
@@ -17,13 +25,7 @@ const ListItem = ({
   image,
   onPress,
   renderRightActions,
-}: {
-  title: string;
-  description: string;
-  image: ImageSourcePropType;
-  onPress: () => void;
-  renderRightActions: () => React.ReactNode;
-}) => {
+}: Props) => {
   return (
     <GestureHandlerRootView>
       <Swipeable renderRightActions={renderRightActions}>
@@ -47,7 +49,7 @@ const ListItem = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', padding: 10 },
+  container: { flexDirection: "row", padding: 10 },
   textWrapper: {
     flex: 1,
     marginLeft: 10,

@@ -1,8 +1,16 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import React from 'react';
-import AppText from './AppText';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
-import theme from '../config/theme';
+import React from "react";
+import { StyleSheet, View, TouchableHighlight } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppText from "./AppText";
+import theme from "../config/theme";
+
+type Props = {
+  children: React.ReactNode;
+  icon: keyof typeof MaterialCommunityIcons.glyphMap;
+  color: string;
+  backgroundColor: string;
+  style?: any;
+};
 
 const MenuButton = ({
   children,
@@ -10,13 +18,7 @@ const MenuButton = ({
   color,
   backgroundColor,
   style,
-}: {
-  children: React.ReactNode;
-  icon: any;
-  color: string;
-  backgroundColor: string;
-  style?: any;
-}) => {
+}: Props) => {
   return (
     <TouchableHighlight>
       <View style={[styles.wrapper, style]}>
@@ -36,13 +38,13 @@ const MenuButton = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 10,
     backgroundColor: theme.colors.white,
   },
   icon: {
-    backgroundColor: 'dodgerblue',
+    backgroundColor: "dodgerblue",
     padding: 10,
     borderRadius: 50,
   },

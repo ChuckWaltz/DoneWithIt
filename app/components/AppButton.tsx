@@ -1,46 +1,54 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import theme from '../config/theme';
+import { StyleSheet, Text, TouchableHighlight } from "react-native";
+import theme from "../config/theme";
+
+type Props = {
+  children: React.ReactNode;
+  onPress: () => void;
+  color?: "primary" | "secondary";
+  style?: any;
+};
 
 export default function AppButton({
   children,
   onPress,
-  color = 'primary',
+  color = "primary",
   style,
-}: {
-  children: React.ReactNode;
-  onPress: () => void;
-  color?: 'primary' | 'secondary';
-  style?: any;
-}) {
+}: Props) {
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       onPress={onPress}
-      style={createStyles(color, style).button}
+      style={[createStyles(color).button, style]}
+      underlayColor={
+        color === "primary"
+          ? theme.colors.secondary
+          : color === "secondary"
+          ? theme.colors.primary
+          : theme.colors.medium
+      }
     >
-      <Text style={createStyles(color, style).text}>{children}</Text>
-    </TouchableOpacity>
+      <Text style={createStyles(color).text}>{children}</Text>
+    </TouchableHighlight>
   );
 }
 
-const createStyles = (color: string, style: any) =>
+const createStyles = (color: string) =>
   StyleSheet.create({
     button: {
       backgroundColor:
-        color === 'primary'
+        color === "primary"
           ? theme.colors.primary
-          : color === 'secondary'
+          : color === "secondary"
           ? theme.colors.secondary
           : theme.colors.primary,
       paddingVertical: 10,
       paddingHorizontal: 20,
       borderRadius: 100,
-      width: '100%',
-      alignItems: 'center',
-      ...style,
+      width: "100%",
+      alignItems: "center",
     },
     text: {
-      color: 'white',
-      textTransform: 'uppercase',
+      color: "white",
+      textTransform: "uppercase",
       fontSize: 16,
     },
   });

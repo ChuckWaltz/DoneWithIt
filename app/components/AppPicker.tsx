@@ -1,18 +1,16 @@
 import {
   StyleSheet,
-  View,
-  TouchableWithoutFeedback,
   Modal,
-  Button,
   FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useState } from "react";
 
-import theme from '../config/theme';
-import AppText from './AppText';
-import { useState } from 'react';
-import Screen from './Screen';
+import AppText from "./AppText";
+import AppButton from "./AppButton";
+import theme from "../config/theme";
 
 type Props = {
   icon: keyof typeof MaterialCommunityIcons.glyphMap;
@@ -24,8 +22,12 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+      <TouchableHighlight
+        onPress={() => setModalVisible(true)}
+        underlayColor={theme.colors.lightish}
+        style={styles.container}
+      >
+        <>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -41,38 +43,52 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
             color={theme.colors.medium}
             style={styles.icon}
           />
-        </View>
-      </TouchableWithoutFeedback>
+        </>
+      </TouchableHighlight>
       <Modal visible={modalVisible} animationType="slide">
-        <Button title="Close" onPress={() => setModalVisible(false)}></Button>
-        <FlatList
-          data={items}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => console.log(item)}
-              style={styles.pickerItem}
-            >
-              <AppText>{item.label}</AppText>
-            </TouchableOpacity>
-          )}
-        ></FlatList>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TouchableHighlight
+                underlayColor={theme.colors.lightish}
+                onPress={() => console.log(item)}
+                style={styles.pickerItem}
+              >
+                <AppText>{item.label}</AppText>
+              </TouchableHighlight>
+            )}
+          ></FlatList>
+        </View>
+        <AppButton
+          onPress={() => setModalVisible(false)}
+          style={styles.closeButton}
+        >
+          Close
+        </AppButton>
       </Modal>
     </>
   );
 };
 const styles = StyleSheet.create({
+  closeButton: {
+    backgroundColor: theme.colors.primary,
+  },
   container: {
     backgroundColor: theme.colors.light,
     borderRadius: 25,
-    flexDirection: 'row',
-    width: '100%',
+    flexDirection: "row",
+    width: "100%",
     marginVertical: 10,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 15,
   },
   icon: {
     marginRight: 10,
+  },
+  listContainer: {
+    paddingVertical: 20,
   },
   pickerItem: {
     padding: 10,
@@ -80,7 +96,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     height: 50,
-    textAlignVertical: 'center',
+    textAlignVertical: "center",
     ...theme.text.body,
   },
 });

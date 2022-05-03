@@ -1,16 +1,14 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
-import theme from '../config/theme';
-import AppText from './AppText';
+import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import theme from "../config/theme";
+import AppText from "./AppText";
 
-export default function AppCard({
-  title,
-  subTitle,
-  image,
-}: {
+type Props = {
   title: string;
   subTitle: string;
   image: ImageSourcePropType;
-}) {
+};
+
+export default function AppCard({ title, subTitle, image }: Props) {
   return (
     <View style={styles.container}>
       <Image resizeMode="cover" source={image} style={styles.image} />
@@ -20,7 +18,7 @@ export default function AppCard({
           type="body"
           style={{
             color: theme.colors.secondary,
-            fontWeight: 'bold',
+            fontWeight: "bold",
             marginTop: 5,
           }}
         >
@@ -33,8 +31,8 @@ export default function AppCard({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    backgroundColor: 'white',
+    flexDirection: "column",
+    backgroundColor: "white",
     borderRadius: 20,
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.6,
@@ -43,9 +41,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },

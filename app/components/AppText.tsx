@@ -1,7 +1,7 @@
-import { Text, StyleProp, TextStyle } from 'react-native';
-import theme, { TextType } from '../config/theme';
+import { Text, StyleProp, TextStyle } from "react-native";
+import theme, { TextType } from "../config/theme";
 
-type AppTextInput = {
+type Props = {
   children: any;
   type?: TextType;
   style?: StyleProp<TextStyle>;
@@ -9,8 +9,8 @@ type AppTextInput = {
 
 export default function AppText({
   children,
-  type = 'body',
+  type = "body",
   style = undefined,
-}: AppTextInput) {
+}: Props) {
   return <Text style={[theme.text[type], style]}>{children}</Text>;
 }

@@ -2,7 +2,9 @@ import { StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-const ListItemDeleteActions = ({ onPress }: { onPress: () => void }) => {
+type Props = { onPress: () => void };
+
+const ListItemDeleteActions = ({ onPress }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={onPress} style={styles.container}>
       <MaterialCommunityIcons name="trash-can" size={35} color="white" />

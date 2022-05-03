@@ -1,48 +1,49 @@
-import { Platform } from 'react-native';
+import { Platform } from "react-native";
 
 const platformStyles = (type: TextType) =>
   Platform.select({
     ios: {
-      fontSize: getFontSize('ios', type),
-      fontFamily: 'Avenir',
+      fontSize: getFontSize("ios", type),
+      fontFamily: "Avenir",
     },
-    android: { fontSize: getFontSize('android', type), fontFamily: 'Roboto' },
+    android: { fontSize: getFontSize("android", type), fontFamily: "Roboto" },
   });
 
-const getFontSize = (platform: 'ios' | 'android', type: TextType): number => {
+const getFontSize = (platform: "ios" | "android", type: TextType): number => {
   switch (platform) {
-    case 'ios':
+    case "ios":
       switch (type) {
-        case 'header':
+        case "header":
           return 26;
-        case 'subheader':
+        case "subheader":
           return 20;
-        case 'body':
+        case "body":
           return 16;
       }
-    case 'android':
+    case "android":
       switch (type) {
-        case 'header':
+        case "header":
           return 26;
-        case 'subheader':
+        case "subheader":
           return 20;
-        case 'body':
+        case "body":
           return 16;
       }
   }
 };
 
 const colors = {
-  primary: '#fc5c65',
-  secondary: '#4ecdc4',
-  dark: '#0c0c0c',
-  medium: '#6e6969',
-  light: '#f8f4f4',
-  black: '#171717',
-  white: '#fff',
+  primary: "#fc5c65",
+  secondary: "#4ecdc4",
+  dark: "#0c0c0c",
+  medium: "#6e6969",
+  lightish: "#d4d4d4",
+  light: "#f8f4f4",
+  black: "#171717",
+  white: "#fff",
 };
 
-export type TextType = 'header' | 'subheader' | 'body';
+export type TextType = "header" | "subheader" | "body";
 
 export default {
   colors,
@@ -50,15 +51,15 @@ export default {
   text: {
     body: {
       color: colors.dark,
-      ...platformStyles('body'),
+      ...platformStyles("body"),
     },
     header: {
       color: colors.dark,
-      ...platformStyles('header'),
+      ...platformStyles("header"),
     },
     subheader: {
       color: colors.dark,
-      ...platformStyles('subheader'),
+      ...platformStyles("subheader"),
     },
   },
 };

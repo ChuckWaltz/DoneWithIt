@@ -1,21 +1,21 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
 
-import Screen from './app/components/Screen';
-import AppTextInput from './app/components/AppTextInput';
-import AppPicker from './app/components/AppPicker';
+import Screen from "./app/components/Screen";
+import AppTextInput from "./app/components/AppTextInput";
+import AppPicker from "./app/components/AppPicker";
 
 const listItems = [
   {
     id: 1,
-    label: 'Item 1',
+    label: "Furniture",
   },
   {
     id: 2,
-    label: 'Item 2',
+    label: "Clothing",
   },
   {
     id: 3,
-    label: 'Item 3',
+    label: "Electronics",
   },
 ];
 
@@ -31,6 +31,6 @@ export default function App() {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: '#f8f4f4',
+    backgroundColor: "#f8f4f4",
   },
 });
