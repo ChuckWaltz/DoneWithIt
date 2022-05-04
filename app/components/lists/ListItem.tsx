@@ -8,8 +8,8 @@ import {
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import AppText from "./AppText";
-import theme from "../config/theme";
+import AppText from "../AppText";
+import theme from "../../config/theme";
 
 type Props = {
   title: string;

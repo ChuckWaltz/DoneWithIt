@@ -3,7 +3,9 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import AppButton from "../components/AppButton";
-import AppFormField from "../components/AppFormField";
+import AppFormField from "../components/forms/AppFormField";
+import AppSubmitButton from "../components/forms/AppSubmitButton";
+import AppForm from "../components/forms/AppForm";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -14,38 +16,32 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Image source={require("../assets/logo-red.png")} style={styles.logo} />
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
-          <>
-            <AppFormField
-              name="email"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              placeholder="Email"
-              textContentType="emailAddress"
-            ></AppFormField>
-            <AppFormField
-              name="password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="key"
-              keyboardType="visible-password"
-              placeholder="Password"
-              secureTextEntry={true}
-              textContentType="password"
-            ></AppFormField>
-            <AppButton onPress={handleSubmit} style={{ marginTop: 10 }}>
-              Login
-            </AppButton>
-          </>
-        )}
-      </Formik>
+        <AppFormField
+          name="email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          placeholder="Email"
+          textContentType="emailAddress"
+        ></AppFormField>
+        <AppFormField
+          name="password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="key"
+          keyboardType="visible-password"
+          placeholder="Password"
+          secureTextEntry={true}
+          textContentType="password"
+        ></AppFormField>
+        <AppSubmitButton style={{ marginTop: 10 }}>Login</AppSubmitButton>
+      </AppForm>
     </View>
   );
 };
