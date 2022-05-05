@@ -1,11 +1,16 @@
-import { useFormikContext } from "formik";
-import AppButton from "../AppButton";
+import { useFormikContext } from 'formik';
+import AppButton from '../AppButton';
 
 const AppSubmitButton = ({ children, ...otherProps }: { [x: string]: any }) => {
-  const { handleSubmit } = useFormikContext();
+  const { handleSubmit, isValid } = useFormikContext();
 
   return (
-    <AppButton onPress={handleSubmit} style={{ marginTop: 10 }} {...otherProps}>
+    <AppButton
+      onPress={handleSubmit}
+      style={{ marginTop: 10 }}
+      disabled={!isValid}
+      {...otherProps}
+    >
       {children}
     </AppButton>
   );
