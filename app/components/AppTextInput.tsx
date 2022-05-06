@@ -1,7 +1,7 @@
-import { Platform, StyleSheet, TextInput, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet, TextInput, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import theme from "../config/theme";
+import theme from '../config/theme';
 
 type Props = {
   icon?: keyof typeof MaterialCommunityIcons.glyphMap;
@@ -27,17 +27,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.light,
     borderRadius: 25,
-    flexDirection: "row",
-    width: "100%",
+    flexDirection: 'row',
+    width: '100%',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 15,
   },
   icon: {
     marginRight: 10,
   },
   textInput: {
-    flex: 1,
     height: 50,
     ...theme.text.body,
   },

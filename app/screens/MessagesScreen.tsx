@@ -1,22 +1,34 @@
-import { FlatList } from "react-native";
-import React, { useState } from "react";
+import { FlatList } from 'react-native';
+import React, { useState } from 'react';
 
-import ListItem from "../components/lists/ListItem";
-import ListItemSeparator from "../components/lists/ListItemSeparator";
-import ListItemDeleteActions from "../components/lists/ListItemDeleteActions";
+import ListItem from '../components/lists/ListItem';
+import ListItemSeparator from '../components/lists/ListItemSeparator';
+import ListItemDeleteActions from '../components/lists/ListItemDeleteActions';
 
 const initialMessages = [
   {
     id: 1,
-    title: "Hello",
-    body: "Hello there",
-    image: require("../assets/mosh.jpg"),
+    title: 'Hello',
+    body: 'This is some really long text that should be truncated to fit the screen and not be too long to be able to scroll to the bottom of the screen. Please scroll to the bottom of the screen to see the full text.',
+    image: require('../assets/mosh.jpg'),
   },
   {
     id: 2,
-    title: "Hello 2",
-    body: "Hello there 2",
-    image: require("../assets/mosh.jpg"),
+    title: 'Hello 2',
+    body: 'Hello there 2',
+    image: require('../assets/mosh.jpg'),
+  },
+  {
+    id: 3,
+    title: 'Hello 3',
+    body: 'Hello there 3',
+    image: require('../assets/mosh.jpg'),
+  },
+  {
+    id: 4,
+    title: 'Hello 4',
+    body: 'Hello there 4',
+    image: require('../assets/mosh.jpg'),
   },
 ];
 
@@ -43,6 +55,7 @@ const MessagesScreen = () => {
             renderRightActions={() => (
               <ListItemDeleteActions onPress={() => handleDelete(message)} />
             )}
+            showChevron
           />
         );
       }}

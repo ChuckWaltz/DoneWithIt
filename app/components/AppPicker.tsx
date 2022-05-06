@@ -4,21 +4,29 @@ import {
   FlatList,
   TouchableHighlight,
   View,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useState } from "react";
+} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useState } from 'react';
 
-import AppText from "./AppText";
-import AppButton from "./AppButton";
-import theme from "../config/theme";
+import AppText from './AppText';
+import AppButton from './AppButton';
+import theme from '../config/theme';
 
 type Props = {
-  icon: keyof typeof MaterialCommunityIcons.glyphMap;
+  icon?: keyof typeof MaterialCommunityIcons.glyphMap;
+  items: { id: number | string; label: string }[];
+  onSelectItem: (item: any) => void;
+  placeholder?: string;
   [x: string]: any;
 };
 
-const AppPicker = ({ icon, items, placeholder }: Props) => {
-  const [selection, setSelection] = useState<string | undefined>();
+const AppPicker = ({
+  icon,
+  items,
+  onSelectItem,
+  selectedItem,
+  placeholder,
+}: Props) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   return (
@@ -37,7 +45,13 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{selection ?? placeholder}</AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={[styles.text, { opacity: 0.5 }]}>
+              {placeholder}
+            </AppText>
+          )}
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -50,13 +64,13 @@ const AppPicker = ({ icon, items, placeholder }: Props) => {
         <View style={styles.listContainer}>
           <FlatList
             data={items}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <TouchableHighlight
                 underlayColor={theme.colors.lightish}
                 onPress={() => {
-                  setSelection(item.label);
                   setModalVisible(false);
+                  onSelectItem(item);
                 }}
                 style={styles.pickerItem}
               >
@@ -81,10 +95,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.light,
     borderRadius: 25,
-    flexDirection: "row",
-    width: "100%",
+    flexDirection: 'row',
+    width: '100%',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 15,
   },
   icon: {
@@ -100,7 +114,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     height: 50,
-    textAlignVertical: "center",
+    textAlignVertical: 'center',
     ...theme.text.body,
   },
 });
