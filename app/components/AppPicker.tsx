@@ -4,19 +4,25 @@ import {
   FlatList,
   TouchableHighlight,
   View,
-} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useState } from 'react';
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useState } from "react";
 
-import AppText from './AppText';
-import AppButton from './AppButton';
-import theme from '../config/theme';
+import AppText from "./AppText";
+import AppButton from "./AppButton";
+import theme from "../config/theme";
 
 type Props = {
   icon?: keyof typeof MaterialCommunityIcons.glyphMap;
-  items: { id: number | string; label: string }[];
+  items: {
+    id: number | string;
+    label: string;
+    icon: keyof typeof MaterialCommunityIcons.glyphMap;
+    color: string;
+  }[];
   onSelectItem: (item: any) => void;
   placeholder?: string;
+  width?: number | string;
   [x: string]: any;
 };
 
@@ -26,6 +32,7 @@ const AppPicker = ({
   onSelectItem,
   selectedItem,
   placeholder,
+  width,
 }: Props) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -34,7 +41,7 @@ const AppPicker = ({
       <TouchableHighlight
         onPress={() => setModalVisible(true)}
         underlayColor={theme.colors.lightish}
-        style={styles.container}
+        style={[styles.container, { width: width ?? "100%" }]}
       >
         <>
           {icon && (
@@ -65,6 +72,37 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={(item) => item.id.toString()}
+            numColumns={3}
+            renderItem={({ item }) => (
+              <TouchableHighlight
+                underlayColor={theme.colors.lightish}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+                style={styles.pickerItemWrapper}
+              >
+                <>
+                  <View
+                    style={[
+                      styles.pickerItemButton,
+                      { backgroundColor: item.color },
+                    ]}
+                  >
+                    <MaterialCommunityIcons
+                      name={item.icon}
+                      size={20}
+                      style={styles.pickerIcon}
+                    />
+                  </View>
+                  <AppText>{item.label}</AppText>
+                </>
+              </TouchableHighlight>
+            )}
+          ></FlatList>
+          {/* <FlatList
+            data={items}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <TouchableHighlight
                 underlayColor={theme.colors.lightish}
@@ -77,7 +115,7 @@ const AppPicker = ({
                 <AppText>{item.label}</AppText>
               </TouchableHighlight>
             )}
-          ></FlatList>
+          ></FlatList> */}
         </View>
         <View style={styles.buttonWrapper}>
           <AppButton onPress={() => setModalVisible(false)} color="primary">
@@ -95,26 +133,40 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.light,
     borderRadius: 25,
-    flexDirection: 'row',
-    width: '100%',
+    flexDirection: "row",
+    width: "100%",
     marginVertical: 10,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 15,
   },
   icon: {
     marginRight: 10,
   },
   listContainer: {
-    paddingVertical: 40,
+    paddingBottom: 20,
+    paddingTop: 40,
   },
-  pickerItem: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  pickerIcon: {
+    color: "white",
+    fontSize: 32,
+  },
+  pickerItemButton: {
+    width: 80,
+    height: 80,
+    alignItems: "center",
+    backgroundColor: "orange",
+    borderRadius: 100,
+    justifyContent: "center",
+  },
+  pickerItemWrapper: {
+    alignItems: "center",
+    flex: 1 / 3,
+    margin: 10,
   },
   text: {
     flex: 1,
     height: 50,
-    textAlignVertical: 'center',
+    textAlignVertical: "center",
     ...theme.text.body,
   },
 });

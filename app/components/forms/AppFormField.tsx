@@ -4,10 +4,11 @@ import AppTextInput from "../AppTextInput";
 
 type Props = {
   name: string;
+  width?: number | string;
   [x: string]: any;
 };
 
-const AppFormField = ({ name, ...otherProps }: Props) => {
+const AppFormField = ({ name, width, ...otherProps }: Props) => {
   const { errors, touched, setFieldTouched, handleChange } = useFormikContext();
 
   return (
@@ -15,6 +16,7 @@ const AppFormField = ({ name, ...otherProps }: Props) => {
       <AppTextInput
         onChangeText={handleChange(name)}
         onBlur={() => setFieldTouched(name)}
+        width={width}
         {...otherProps}
       ></AppTextInput>
       <AppErrorMessage
