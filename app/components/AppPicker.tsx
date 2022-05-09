@@ -95,7 +95,7 @@ const AppPicker = ({
                       style={styles.pickerIcon}
                     />
                   </View>
-                  <AppText>{item.label}</AppText>
+                  <AppText style={styles.pickerItemText}>{item.label}</AppText>
                 </>
               </TouchableHighlight>
             )}
@@ -143,25 +143,32 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   listContainer: {
-    paddingBottom: 20,
-    paddingTop: 40,
+    paddingBottom: 10,
+    paddingTop: 10,
   },
   pickerIcon: {
-    color: "white",
+    color: theme.colors.white,
     fontSize: 32,
   },
   pickerItemButton: {
-    width: 80,
-    height: 80,
     alignItems: "center",
     backgroundColor: "orange",
     borderRadius: 100,
+    height: 80,
     justifyContent: "center",
+    marginBottom: 10,
+    width: 80,
+  },
+  pickerItemText: {
+    textAlign: "center",
   },
   pickerItemWrapper: {
     alignItems: "center",
+    borderRadius: 25,
     flex: 1 / 3,
+    flexGrow: 1,
     margin: 10,
+    padding: 10,
   },
   text: {
     flex: 1,

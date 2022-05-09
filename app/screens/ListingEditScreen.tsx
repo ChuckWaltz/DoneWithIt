@@ -33,7 +33,7 @@ const categories = [
   {
     id: 6,
     label: "Sports",
-    icon: "backetball",
+    icon: "basketball",
     value: "sports",
     color: "#45aaf2",
   },
@@ -43,6 +43,20 @@ const categories = [
     icon: "headphones",
     value: "moviesAndMusic",
     color: "#4b7bec",
+  },
+  {
+    id: 8,
+    label: "Books",
+    icon: "book-open-variant",
+    value: "books",
+    color: "#a55eea",
+  },
+  {
+    id: 9,
+    label: "Other",
+    icon: "application",
+    value: "other",
+    color: "#778ca3",
   },
 ] as any[];
 
