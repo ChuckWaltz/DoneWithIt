@@ -32,7 +32,7 @@ const AppPicker = ({
   onSelectItem,
   selectedItem,
   placeholder,
-  width,
+  width = "100%",
 }: Props) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -41,7 +41,7 @@ const AppPicker = ({
       <TouchableHighlight
         onPress={() => setModalVisible(true)}
         underlayColor={theme.colors.lightish}
-        style={[styles.container, { width: width ?? "100%" }]}
+        style={[styles.container, { width }]}
       >
         <>
           {icon && (
@@ -131,20 +131,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   container: {
+    alignItems: "center",
     backgroundColor: theme.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
     marginVertical: 10,
-    alignItems: "center",
     paddingHorizontal: 15,
+    width: "100%",
   },
   icon: {
     marginRight: 10,
   },
   listContainer: {
-    paddingBottom: 10,
-    paddingTop: 10,
+    padding: 20,
   },
   pickerIcon: {
     color: theme.colors.white,
@@ -152,12 +151,10 @@ const styles = StyleSheet.create({
   },
   pickerItemButton: {
     alignItems: "center",
-    backgroundColor: "orange",
     borderRadius: 100,
-    height: 80,
+    padding: 20,
     justifyContent: "center",
     marginBottom: 10,
-    width: 80,
   },
   pickerItemText: {
     textAlign: "center",
@@ -165,10 +162,8 @@ const styles = StyleSheet.create({
   pickerItemWrapper: {
     alignItems: "center",
     borderRadius: 25,
-    flex: 1 / 3,
-    flexGrow: 1,
-    margin: 10,
     padding: 10,
+    width: "33.33%",
   },
   text: {
     flex: 1,

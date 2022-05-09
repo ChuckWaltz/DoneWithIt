@@ -88,13 +88,13 @@ const ListingEditScreen = () => {
           placeholder="Price"
           keyboardType="number-pad"
           icon="currency-usd"
-          width={150}
+          width={120}
         ></AppFormField>
         <AppFormPicker
           name="category"
           items={categories}
           placeholder="Category"
-          width={200}
+          width={"50%"}
         ></AppFormPicker>
         <AppFormField
           name="description"

@@ -9,9 +9,9 @@ type Props = {
   [x: string]: any;
 };
 
-const AppTextInput = ({ icon, width, ...otherProps }: Props) => {
+const AppTextInput = ({ icon, width = "100%", ...otherProps }: Props) => {
   return (
-    <View style={[styles.container, { width: width ?? "100%" }]}>
+    <View style={[styles.container, { width }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}

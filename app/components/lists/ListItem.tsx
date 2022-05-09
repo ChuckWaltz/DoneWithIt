@@ -4,13 +4,13 @@ import {
   StyleSheet,
   TouchableHighlight,
   View,
-} from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from '../AppText';
-import theme from '../../config/theme';
+import AppText from "../AppText";
+import theme from "../../config/theme";
 
 type Props = {
   title: string;
@@ -39,7 +39,9 @@ const ListItem = ({
           <View style={styles.container}>
             <Image source={image} style={styles.sellerImage} />
             <View style={styles.textWrapper}>
-              <AppText type="body">{title}</AppText>
+              <AppText type="body" numberOfLines={1}>
+                {title}
+              </AppText>
               <AppText style={{ color: theme.colors.medium }} numberOfLines={2}>
                 {description}
               </AppText>
@@ -60,9 +62,9 @@ const ListItem = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
     backgroundColor: theme.colors.white,
   },
   textWrapper: {
