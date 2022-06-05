@@ -1,24 +1,35 @@
-import { useState } from "react";
 import {
   Image,
   StyleProp,
   StyleSheet,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   ViewStyle,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import uuid from "react-native-uuid";
 import theme from "../config/theme";
+import { ImageType } from "./types/image-item.model";
 
 type Props = {
+  id?: string;
+  uri?: string;
+  onSelectImage?: (image: ImageType) => void;
+  onRemoveImage?: (image: ImageType) => void;
   style?: StyleProp<ViewStyle>;
   [x: string]: any;
 };
 
-export default function AppImageInput({ style, ...otherProps }: Props) {
+export default function AppImageInput({
+  id,
+  uri,
+  onSelectImage,
+  onRemoveImage,
+  style,
+  ...otherProps
+}: Props) {
   let libraryPermission: ImagePicker.PermissionStatus;
-
-  const [imageUri, setImageUri] = useState<string>();
 
   const requestLibraryPermission = async () => {
     const currentPermission =
@@ -38,7 +49,7 @@ export default function AppImageInput({ style, ...otherProps }: Props) {
       try {
         const result = await ImagePicker.launchImageLibraryAsync();
         if (!result.cancelled) {
-          setImageUri(result.uri);
+          onSelectImage?.({ id: uuid.v4().toString(), uri: result.uri });
         }
       } catch (error) {}
     }
@@ -51,18 +62,31 @@ export default function AppImageInput({ style, ...otherProps }: Props) {
       underlayColor={theme.colors.secondary}
     >
       <>
-        {!imageUri ? (
+        {!uri ? (
           <MaterialCommunityIcons
             color={theme.colors.medium}
             name="camera"
             style={styles.icon}
           />
         ) : (
-          <Image
-            source={{ uri: imageUri }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <>
+            <Image
+              source={{ uri: uri }}
+              style={styles.image}
+              resizeMode="cover"
+            />
+            {onRemoveImage && id && (
+              <TouchableWithoutFeedback
+                onPress={() => onRemoveImage!({ id: id!, uri: uri! })}
+              >
+                <MaterialCommunityIcons
+                  color={theme.colors.red}
+                  name="delete"
+                  style={styles.removeIcon}
+                />
+              </TouchableWithoutFeedback>
+            )}
+          </>
         )}
       </>
     </TouchableHighlight>
@@ -85,5 +109,11 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  removeIcon: {
+    position: "absolute",
+    top: 5,
+    right: 5,
+    fontSize: 26,
   },
 });

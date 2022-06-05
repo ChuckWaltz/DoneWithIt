@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
-import AppImageInput from "./app/components/AppImageInput";
+import ImageList from "./app/components/lists/ImageList";
 
 import Screen from "./app/components/Screen";
 
 export default function App() {
   return (
     <Screen>
-      <AppImageInput />
+      <ImageList />
     </Screen>
   );
 }

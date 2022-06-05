@@ -41,6 +41,7 @@ const colors = {
   light: "#f8f4f4",
   black: "#171717",
   white: "#fff",
+  red: "#fc2803",
 };
 
 export type TextType = "header" | "subheader" | "body";

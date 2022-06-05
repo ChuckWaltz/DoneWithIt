@@ -1,25 +1,25 @@
-import { useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
-import AppCard from '../components/AppCard';
+import { useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+import AppCard from "../components/AppCard";
 
 const listings = [
   {
     id: 1,
-    title: 'Test 1',
-    subTitle: 'Test 1 Subtitle',
-    image: require('../assets/jacket.jpg'),
+    title: "Test 1",
+    subTitle: "Test 1 Subtitle",
+    image: require("../assets/jacket.jpg"),
   },
   {
     id: 2,
-    title: 'Test 2',
-    subTitle: 'Test 2 Subtitle',
-    image: require('../assets/jacket.jpg'),
+    title: "Test 2",
+    subTitle: "Test 2 Subtitle",
+    image: require("../assets/jacket.jpg"),
   },
   {
     id: 3,
-    title: 'Test 3',
-    subTitle: 'Test 3 Subtitle',
-    image: require('../assets/jacket.jpg'),
+    title: "Test 3",
+    subTitle: "Test 3 Subtitle",
+    image: require("../assets/jacket.jpg"),
   },
 ];
 
@@ -29,7 +29,7 @@ const ListingsScreen = () => {
   return (
     <FlatList
       data={listings}
-      keyExtractor={(message) => message.id.toString()}
+      keyExtractor={(listing) => listing.id.toString()}
       renderItem={({ item }) => {
         return (
           <AppCard
