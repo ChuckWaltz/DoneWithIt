@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
-import ImageList from "./app/components/lists/ImageList";
+import { StyleSheet } from 'react-native';
+import ListingEditScreen from './app/screens/ListingEditScreen';
 
-import Screen from "./app/components/Screen";
+import Screen from './app/components/Screen';
 
 export default function App() {
   return (
     <Screen>
-      <ImageList />
+      <ListingEditScreen />
     </Screen>
   );
 }

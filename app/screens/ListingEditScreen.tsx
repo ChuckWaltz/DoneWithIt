@@ -1,85 +1,117 @@
-import { StyleSheet, View } from "react-native";
-import * as Yup from "yup";
+import { StyleSheet, View } from 'react-native';
+import * as Yup from 'yup';
+import * as Location from 'expo-location';
 
-import AppForm from "../components/forms/AppForm";
-import AppFormField from "../components/forms/AppFormField";
-import AppFormPicker from "../components/forms/AppFormPicker";
-import AppSubmitButton from "../components/forms/AppSubmitButton";
+import AppForm from '../components/forms/AppForm';
+import AppFormField from '../components/forms/AppFormField';
+import AppFormPicker from '../components/forms/AppFormPicker';
+import AppFormImagePicker from '../components/forms/AppFormImagePicker';
+import AppSubmitButton from '../components/forms/AppSubmitButton';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const categories = [
   {
     id: 1,
-    label: "Furniture",
-    icon: "floor-lamp",
-    value: "furniture",
-    color: "#fc5c65",
+    label: 'Furniture',
+    icon: 'floor-lamp',
+    value: 'furniture',
+    color: '#fc5c65',
   },
-  { id: 2, label: "Cars", icon: "car", value: "cars", color: "#fd9644" },
+  { id: 2, label: 'Cars', icon: 'car', value: 'cars', color: '#fd9644' },
   {
     id: 3,
-    label: "Cameras",
-    icon: "camera",
-    value: "cameras",
-    color: "#fed330",
+    label: 'Cameras',
+    icon: 'camera',
+    value: 'cameras',
+    color: '#fed330',
   },
-  { id: 4, label: "Games", icon: "cards", value: "games", color: "#26de81" },
+  { id: 4, label: 'Games', icon: 'cards', value: 'games', color: '#26de81' },
   {
     id: 5,
-    label: "Clothing",
-    icon: "shoe-heel",
-    value: "clothing",
-    color: "#2bcbba",
+    label: 'Clothing',
+    icon: 'shoe-heel',
+    value: 'clothing',
+    color: '#2bcbba',
   },
   {
     id: 6,
-    label: "Sports",
-    icon: "basketball",
-    value: "sports",
-    color: "#45aaf2",
+    label: 'Sports',
+    icon: 'basketball',
+    value: 'sports',
+    color: '#45aaf2',
   },
   {
     id: 7,
-    label: "Movies & Music",
-    icon: "headphones",
-    value: "moviesAndMusic",
-    color: "#4b7bec",
+    label: 'Movies & Music',
+    icon: 'headphones',
+    value: 'moviesAndMusic',
+    color: '#4b7bec',
   },
   {
     id: 8,
-    label: "Books",
-    icon: "book-open-variant",
-    value: "books",
-    color: "#a55eea",
+    label: 'Books',
+    icon: 'book-open-variant',
+    value: 'books',
+    color: '#a55eea',
   },
   {
     id: 9,
-    label: "Other",
-    icon: "application",
-    value: "other",
-    color: "#778ca3",
+    label: 'Other',
+    icon: 'application',
+    value: 'other',
+    color: '#778ca3',
   },
 ] as any[];
 
 const validationSchema = Yup.object().shape({
-  title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
-  category: Yup.object().required().nullable().label("Category"),
-  description: Yup.string().label("Description"),
+  title: Yup.string().required().min(1).label('Title'),
+  price: Yup.number().required().min(1).max(10000).label('Price'),
+  category: Yup.object().required().nullable().label('Category'),
+  description: Yup.string().label('Description'),
+  images: Yup.array()
+    .required()
+    .min(1, 'Please select at least one image')
+    .label('Images'),
 });
 
 const ListingEditScreen = () => {
+  const [location, setLocation] = useState<Location.LocationObject | null>(
+    null
+  );
+
+  const requestLocation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+
+    if (status === Location.PermissionStatus.GRANTED) {
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    }
+  };
+
+  useEffect(() => {
+    requestLocation();
+  }, []);
+
+  const handleSubmit = (values: any) => {
+    console.log(values);
+    console.log(location);
+  };
+
   return (
     <View style={styles.container}>
       <AppForm
         initialValues={{
-          title: "",
-          price: "",
+          title: '',
+          price: '',
           category: null,
-          description: "",
+          description: '',
+          images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={validationSchema}
       >
+        <AppFormImagePicker name="images"></AppFormImagePicker>
         <AppFormField name="title" placeholder="Title"></AppFormField>
         <AppFormField
           name="price"
@@ -94,7 +126,7 @@ const ListingEditScreen = () => {
           name="category"
           items={categories}
           placeholder="Category"
-          width={"50%"}
+          width={'50%'}
         ></AppFormPicker>
         <AppFormField
           name="description"

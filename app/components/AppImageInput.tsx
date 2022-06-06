@@ -5,12 +5,12 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
   ViewStyle,
-} from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import uuid from "react-native-uuid";
-import theme from "../config/theme";
-import { ImageType } from "./types/image-item.model";
+} from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import uuid from 'react-native-uuid';
+import theme from '../config/theme';
+import { ImageType } from './types/image-item.model';
 
 type Props = {
   id?: string;
@@ -70,14 +70,10 @@ export default function AppImageInput({
           />
         ) : (
           <>
-            <Image
-              source={{ uri: uri }}
-              style={styles.image}
-              resizeMode="cover"
-            />
+            <Image source={{ uri }} style={styles.image} resizeMode="cover" />
             {onRemoveImage && id && (
               <TouchableWithoutFeedback
-                onPress={() => onRemoveImage!({ id: id!, uri: uri! })}
+                onPress={() => onRemoveImage({ id, uri })}
               >
                 <MaterialCommunityIcons
                   color={theme.colors.red}
@@ -99,19 +95,19 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     backgroundColor: theme.colors.lightish,
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   icon: {
     fontSize: 42,
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
   removeIcon: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
     fontSize: 26,
