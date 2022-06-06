@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import AppErrorMessage from '../AppErrorMessage';
-import ImageList from '../lists/ImageList';
+import ImageInputList from '../lists/ImageInputList';
 import { ImageType } from '../types/image-item.model';
 
 type Props = {
@@ -12,11 +12,11 @@ const AppFormImagePicker = ({ name }: Props) => {
 
   return (
     <>
-      <ImageList
+      <ImageInputList
         onChangeImages={(images: ImageType[]) => {
           setFieldValue(name, images);
         }}
-      ></ImageList>
+      ></ImageInputList>
       <AppErrorMessage error={errors[name as keyof typeof errors]} />
     </>
   );

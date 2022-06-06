@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleProp,
   StyleSheet,
@@ -47,7 +48,10 @@ export default function AppImageInput({
 
     if (libraryPermission === ImagePicker.PermissionStatus.GRANTED) {
       try {
-        const result = await ImagePicker.launchImageLibraryAsync();
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          quality: 0.5,
+        });
         if (!result.cancelled) {
           onSelectImage?.({ id: uuid.v4().toString(), uri: result.uri });
         }
@@ -73,7 +77,21 @@ export default function AppImageInput({
             <Image source={{ uri }} style={styles.image} resizeMode="cover" />
             {onRemoveImage && id && (
               <TouchableWithoutFeedback
-                onPress={() => onRemoveImage({ id, uri })}
+                onPress={() => {
+                  Alert.alert(
+                    'Remove Image',
+                    'Are you sure you want to remove this image?',
+                    [
+                      {
+                        text: 'Yes',
+                        onPress: () => onRemoveImage({ id, uri }),
+                      },
+                      {
+                        text: 'No',
+                      },
+                    ]
+                  );
+                }}
               >
                 <MaterialCommunityIcons
                   color={theme.colors.red}

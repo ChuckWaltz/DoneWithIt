@@ -7,7 +7,7 @@ type Props = {
   onChangeImages?: (images: ImageType[]) => void;
 };
 
-const ImageList = ({ onChangeImages }: Props) => {
+const ImageInputList = ({ onChangeImages }: Props) => {
   const [images, setImages] = useState<ImageType[]>([]);
 
   return (
@@ -37,7 +37,6 @@ const ImageList = ({ onChangeImages }: Props) => {
             setImages(updatedImages);
             onChangeImages?.(updatedImages);
           }}
-          style={styles.listItem}
         />
       }
     ></FlatList>
@@ -47,12 +46,11 @@ const ImageList = ({ onChangeImages }: Props) => {
 const styles = StyleSheet.create({
   list: {
     width: '100%',
-    paddingHorizontal: 5,
+    marginBottom: 10,
   },
   listItem: {
-    marginVertical: 10,
-    marginHorizontal: 5,
+    marginLeft: 10,
   },
 });
 
-export default ImageList;
+export default ImageInputList;
