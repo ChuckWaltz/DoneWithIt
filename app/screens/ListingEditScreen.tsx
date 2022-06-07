@@ -8,6 +8,12 @@ import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import useLocation from "../hooks/useLocation";
 
+import { RootStackParamList } from "../../App";
+
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+type Props = NativeStackScreenProps<RootStackParamList, "ListingEdit">;
+
 const categories = [
   {
     id: 1,
@@ -73,12 +79,13 @@ const validationSchema = Yup.object().shape({
     .label("Images"),
 });
 
-const ListingEditScreen = () => {
+const ListingEditScreen = ({ navigation }: Props) => {
   const location = useLocation();
 
   const handleSubmit = (values: any) => {
     console.log(values);
     console.log(location);
+    navigation.navigate("Login");
   };
 
   return (
