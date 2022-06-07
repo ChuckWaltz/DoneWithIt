@@ -6,6 +6,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 
 import Screen from "./app/components/Screen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -26,10 +27,20 @@ const StackNavigator = () => (
   </NavigationContainer>
 );
 
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen name="ListingEdit" component={ListingEditScreen} />
+      <Tab.Screen name="Login" component={LoginScreen} />
+    </Tab.Navigator>
+  </NavigationContainer>
+);
+
 export default function App() {
   return (
     <Screen>
-      <StackNavigator />
+      <TabNavigator />
     </Screen>
   );
 }
