@@ -1,6 +1,8 @@
 import { Image, StyleSheet, View } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as Yup from 'yup';
 
+import { RootStackParamList } from '../../App';
 import AppFormField from '../components/forms/AppFormField';
 import AppSubmitButton from '../components/forms/AppSubmitButton';
 import AppForm from '../components/forms/AppForm';
@@ -11,7 +13,11 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(4).label('Password'),
 });
 
-const LoginScreen = () => {
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+};
+
+const LoginScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo-red.png')} style={styles.logo} />
@@ -43,7 +49,7 @@ const LoginScreen = () => {
       </AppForm>
       <AppButton
         color="secondary"
-        onPress={() => console.log('Register')}
+        onPress={() => navigation.navigate('Register')}
         style={{ marginTop: 20 }}
       >
         Register
