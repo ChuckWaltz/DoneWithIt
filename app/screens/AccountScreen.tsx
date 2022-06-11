@@ -1,9 +1,9 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../../App";
 import AppText from "../components/AppText";
 import MenuButton from "../components/MenuButton";
 import theme from "../config/theme";
+import RootStackParamList from "../navigation/RootStackParamList";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Account">;

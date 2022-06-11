@@ -2,7 +2,7 @@ import { Image, StyleSheet, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Yup from "yup";
 
-import { RootStackParamList } from "../../App";
+import RootStackParamList from "../navigation/RootStackParamList";
 import AppFormField from "../components/forms/AppFormField";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import AppForm from "../components/forms/AppForm";

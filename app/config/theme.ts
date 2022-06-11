@@ -33,6 +33,7 @@ const getFontSize = (platform: "ios" | "android", type: TextType): number => {
 };
 
 const colors = {
+  background: "#fff",
   primary: "#fc5c65",
   secondary: "#4ecdc4",
   dark: "#0c0c0c",

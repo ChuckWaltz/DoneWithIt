@@ -6,7 +6,7 @@ import AppButton from "../components/AppButton";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import AppForm from "../components/forms/AppForm";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import RootStackParamList from "../navigation/RootStackParamList";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),

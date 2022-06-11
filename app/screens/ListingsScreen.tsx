@@ -2,7 +2,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { RootStackParamList } from "../../App";
+import RootStackParamList from "../navigation/RootStackParamList";
 import AppCard from "../components/AppCard";
 
 const listings = [

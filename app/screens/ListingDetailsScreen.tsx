@@ -3,7 +3,7 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import { Image, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../../App";
+import RootStackParamList from "../navigation/RootStackParamList";
 import AppText from "../components/AppText";
 import theme from "../config/theme";
 

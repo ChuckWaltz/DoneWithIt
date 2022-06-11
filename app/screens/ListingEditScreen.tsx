@@ -8,7 +8,7 @@ import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import useLocation from "../hooks/useLocation";
 
-import { RootStackParamList } from "../../App";
+import RootStackParamList from "../navigation/RootStackParamList";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
