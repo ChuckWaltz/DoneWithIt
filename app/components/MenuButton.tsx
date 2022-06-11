@@ -10,6 +10,7 @@ type Props = {
   color: string;
   backgroundColor: string;
   style?: any;
+  onPress?: () => void;
 };
 
 const MenuButton = ({
@@ -18,9 +19,10 @@ const MenuButton = ({
   color,
   backgroundColor,
   style,
+  onPress,
 }: Props) => {
   return (
-    <TouchableHighlight>
+    <TouchableHighlight onPress={onPress}>
       <View style={[styles.wrapper, style]}>
         <MaterialCommunityIcons
           name={icon}

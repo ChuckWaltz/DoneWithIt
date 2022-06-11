@@ -1,29 +1,42 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { RootStackParamList } from "../../App";
 import AppCard from "../components/AppCard";
 
 const listings = [
   {
     id: 1,
     title: "Test 1",
-    subTitle: "Test 1 Subtitle",
+    description: "Test 1 Subtitle",
     image: require("../assets/jacket.jpg"),
+    price: 150.0,
+    categoryId: 1,
   },
   {
     id: 2,
     title: "Test 2",
-    subTitle: "Test 2 Subtitle",
+    description: "Test 2 Subtitle",
     image: require("../assets/jacket.jpg"),
+    price: 12.0,
+    categoryId: 2,
   },
   {
     id: 3,
     title: "Test 3",
-    subTitle: "Test 3 Subtitle",
+    description: "Test 3 Subtitle",
     image: require("../assets/jacket.jpg"),
+    price: 20.0,
+    categoryId: 3,
   },
 ];
 
-const ListingsScreen = () => {
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, "Listings">;
+};
+
+const ListingsScreen = ({ navigation }: Props) => {
   const [refreshing, setRefreshing] = useState(false);
 
   return (
@@ -32,11 +45,17 @@ const ListingsScreen = () => {
       keyExtractor={(listing) => listing.id.toString()}
       renderItem={({ item }) => {
         return (
-          <AppCard
-            title={item.title}
-            subTitle={item.subTitle}
-            image={item.image}
-          />
+          <TouchableWithoutFeedback
+            onPress={() =>
+              navigation.navigate("ListingDetails", { listing: item })
+            }
+          >
+            <AppCard
+              title={item.title}
+              subTitle={item.description}
+              image={item.image}
+            />
+          </TouchableWithoutFeedback>
         );
       }}
       ItemSeparatorComponent={() => <View style={{ height: 20 }}></View>}

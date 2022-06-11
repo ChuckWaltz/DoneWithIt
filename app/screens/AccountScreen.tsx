@@ -1,13 +1,19 @@
-import { Image, StyleSheet, View } from 'react-native';
-import AppText from '../components/AppText';
-import MenuButton from '../components/MenuButton';
-import theme from '../config/theme';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Image, StyleSheet, View } from "react-native";
+import { RootStackParamList } from "../../App";
+import AppText from "../components/AppText";
+import MenuButton from "../components/MenuButton";
+import theme from "../config/theme";
 
-const MyAccountScreen = () => {
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, "Account">;
+};
+
+const AccountScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
-        <Image source={require('../assets/mosh.jpg')} style={styles.image} />
+        <Image source={require("../assets/mosh.jpg")} style={styles.image} />
         <View style={styles.userInfo}>
           <AppText style={{ fontSize: 18 }}>Mosh Hamendani</AppText>
           <AppText style={{ color: theme.colors.medium }}>
@@ -27,6 +33,7 @@ const MyAccountScreen = () => {
         icon="email"
         color={theme.colors.white}
         backgroundColor={theme.colors.secondary}
+        onPress={() => navigation.navigate("Messages")}
       >
         My Messages
       </MenuButton>
@@ -45,14 +52,14 @@ const MyAccountScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f4f4',
+    backgroundColor: "#f8f4f4",
   },
   userCard: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: theme.colors.white,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   userInfo: {
     padding: 15,
@@ -64,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyAccountScreen;
+export default AccountScreen;
