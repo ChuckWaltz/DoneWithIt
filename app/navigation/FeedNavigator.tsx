@@ -9,6 +9,7 @@ export default () => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
+      presentation: "modal",
     }}
   >
     <Stack.Screen name="Listings" component={ListingsScreen} />
