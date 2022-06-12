@@ -14,7 +14,7 @@ import RootStackParamList from "../navigation/RootStackParamList";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { FormikBag } from "formik";
+import { FormikHelpers } from "formik";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ListingEdit">;
 
@@ -89,7 +89,10 @@ const ListingEditScreen = ({ navigation }: Props) => {
 
   const location = useLocation();
 
-  const handleSubmit = async (values: any, { resetForm }: any) => {
+  const handleSubmit = async (
+    values: any,
+    { resetForm }: FormikHelpers<any>
+  ) => {
     setUploadVisible(true);
     const result = await listingsApi.createListing(
       { ...values, location },

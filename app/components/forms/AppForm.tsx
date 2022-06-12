@@ -1,8 +1,8 @@
-import { Formik } from "formik";
+import { Formik, FormikBag, FormikHelpers } from "formik";
 
 type Props = {
   initialValues: any;
-  onSubmit: (values: any, { resetForm }: any) => void;
+  onSubmit: (values: any, { resetForm }: FormikHelpers<any>) => void;
   validationSchema: any;
   children: any;
 };
