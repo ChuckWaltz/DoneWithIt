@@ -12,8 +12,6 @@ import listingsApi from "../api/listings";
 import RootStackParamList from "../navigation/RootStackParamList";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import useApi from "../hooks/useApi";
-import { ImageType } from "../components/types/image-item.model";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ListingEdit">;
 
@@ -83,28 +81,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const ListingEditScreen = ({ navigation }: Props) => {
-  const createListing = useApi(listingsApi.createListing);
-
   const location = useLocation();
 
   const handleSubmit = async (values: any) => {
-    const data = new FormData();
-    data.append("title", values.title);
-    data.append("price", values.price);
-    data.append("categoryId", values.category.id);
-    data.append("description", values.description);
-    if (location) data.append("location", JSON.stringify(values.location));
-    values.images.forEach((image: ImageType, index: number) => {
-      data.append("images", {
-        name: "image" + index,
-        type: "image/jpeg",
-        uri: image.uri,
-      } as any);
-    });
-    await createListing.request(data);
-    const response = createListing.data;
-    console.log(response);
-    // navigation.navigate("Login");
+    const result = await listingsApi.createListing({ ...values, location });
+    console.log(result);
+    if (!result.ok) return alert("Cound not create listing.");
+    console.log(result.data);
+    return alert("Success");
+    navigation.navigate("Listings");
   };
 
   return (
