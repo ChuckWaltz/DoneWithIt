@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import AppImageInput from '../AppImageInput';
-import { ImageType } from '../types/image-item.model';
+import React, { useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
+import AppImageInput from "../AppImageInput";
+import { ImageType } from "../types/image-item.model";
 
 type Props = {
+  images: ImageType[];
   onChangeImages?: (images: ImageType[]) => void;
 };
 
-const ImageInputList = ({ onChangeImages }: Props) => {
-  const [images, setImages] = useState<ImageType[]>([]);
-
+const ImageInputList = ({ images, onChangeImages }: Props) => {
   return (
     <FlatList
       style={styles.list}
@@ -24,7 +23,6 @@ const ImageInputList = ({ onChangeImages }: Props) => {
             const updatedImages = images.filter(
               (i: ImageType) => i.id !== image.id
             );
-            setImages(updatedImages);
             onChangeImages?.(updatedImages);
           }}
           style={styles.listItem}
@@ -34,7 +32,6 @@ const ImageInputList = ({ onChangeImages }: Props) => {
         <AppImageInput
           onSelectImage={(image: ImageType) => {
             const updatedImages = [...images, image];
-            setImages(updatedImages);
             onChangeImages?.(updatedImages);
           }}
         />
@@ -45,7 +42,7 @@ const ImageInputList = ({ onChangeImages }: Props) => {
 
 const styles = StyleSheet.create({
   list: {
-    width: '100%',
+    width: "100%",
     marginBottom: 10,
   },
   listItem: {

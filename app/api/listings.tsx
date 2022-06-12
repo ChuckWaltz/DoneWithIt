@@ -1,12 +1,13 @@
 import { ImageType } from "../components/types/image-item.model";
-import client from "./client";
-
 import Listing from "./models/listing";
+import client from "./client";
 
 const endpoint = "/listings";
 
-export const createListing = (values: any) => {
-  console.log(values);
+export const createListing = (
+  values: any,
+  onUploadProgress: (progress: number) => void
+) => {
   const data = new FormData();
   data.append("title", values.title);
   data.append("price", values.price);
@@ -21,7 +22,10 @@ export const createListing = (values: any) => {
     } as any);
   });
 
-  return client.post(endpoint, data);
+  return client.post<Listing>(endpoint, data, {
+    onUploadProgress: (progress) =>
+      onUploadProgress(progress.loaded / progress.total),
+  });
 };
 
 const getListings = () => client.get<Listing[]>(endpoint);

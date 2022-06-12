@@ -8,10 +8,13 @@ import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import useLocation from "../hooks/useLocation";
 import listingsApi from "../api/listings";
+import UploadScreen from "./UploadScreen";
 
 import RootStackParamList from "../navigation/RootStackParamList";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useState } from "react";
+import { FormikBag } from "formik";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ListingEdit">;
 
@@ -81,19 +84,35 @@ const validationSchema = Yup.object().shape({
 });
 
 const ListingEditScreen = ({ navigation }: Props) => {
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [uploadVisible, setUploadVisible] = useState<boolean>(false);
+
   const location = useLocation();
 
-  const handleSubmit = async (values: any) => {
-    const result = await listingsApi.createListing({ ...values, location });
-    console.log(result);
-    if (!result.ok) return alert("Cound not create listing.");
-    console.log(result.data);
-    return alert("Success");
-    navigation.navigate("Listings");
+  const handleSubmit = async (values: any, { resetForm }: any) => {
+    setUploadVisible(true);
+    const result = await listingsApi.createListing(
+      { ...values, location },
+      (progress) => setUploadProgress(progress)
+    );
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Cound not create listing.");
+    }
+
+    resetForm();
+    // return alert("Success");
+    // navigation.navigate("Listings");
   };
 
   return (
     <View style={styles.container}>
+      <UploadScreen
+        progress={uploadProgress}
+        visible={uploadVisible}
+        onDone={() => setUploadVisible(false)}
+      />
       <AppForm
         initialValues={{
           title: "",
@@ -102,7 +121,7 @@ const ListingEditScreen = ({ navigation }: Props) => {
           description: "",
           images: [],
         }}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <AppFormImagePicker name="images"></AppFormImagePicker>

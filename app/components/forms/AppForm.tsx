@@ -2,7 +2,7 @@ import { Formik } from "formik";
 
 type Props = {
   initialValues: any;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: any, { resetForm }: any) => void;
   validationSchema: any;
   children: any;
 };
