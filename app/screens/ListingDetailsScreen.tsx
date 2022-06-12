@@ -1,7 +1,4 @@
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from "@react-navigation/native-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image, StyleSheet, View } from "react-native";
 import RootStackParamList from "../navigation/RootStackParamList";
 import AppText from "../components/AppText";
@@ -10,11 +7,11 @@ import theme from "../config/theme";
 type Props = NativeStackScreenProps<RootStackParamList, "ListingDetails">;
 
 export default function ListDetailsScreen({ route }: Props) {
-  const { title, price } = route.params.listing;
+  const { title, price, images } = route.params.listing;
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/jacket.jpg")} style={styles.image} />
+      <Image source={{ uri: images[0].url }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <AppText type="header">{title}</AppText>
         <AppText

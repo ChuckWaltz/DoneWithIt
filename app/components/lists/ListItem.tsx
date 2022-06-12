@@ -1,6 +1,6 @@
 import {
   Image,
-  ImageSourcePropType,
+  ImageURISource,
   StyleSheet,
   TouchableHighlight,
   View,
@@ -15,7 +15,7 @@ import theme from "../../config/theme";
 type Props = {
   title: string;
   description: string;
-  image: ImageSourcePropType;
+  image: ImageURISource;
   onPress: () => void;
   renderRightActions: () => React.ReactNode;
   showChevron?: boolean;

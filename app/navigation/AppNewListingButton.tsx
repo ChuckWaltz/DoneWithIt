@@ -1,11 +1,10 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import theme from "../config/theme";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AppNewListingButton = ({ onPress }: any) => {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.75}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <MaterialCommunityIcons
           name="plus-circle"
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    bottom: 20,
+    bottom: 16,
     borderWidth: 5,
     borderColor: theme.colors.white,
     borderRadius: 40,

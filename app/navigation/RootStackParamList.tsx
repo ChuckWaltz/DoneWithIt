@@ -1,17 +1,12 @@
+import Listing from "../api/models/listing";
+
 type RootStackParamList = {
   Welcome: undefined;
   Register: undefined;
   Login: undefined;
   Listings: undefined;
   ListingDetails: {
-    listing: {
-      id: number;
-      title: string;
-      description: string;
-      image: any;
-      price: number;
-      categoryId: number;
-    };
+    listing: Listing;
   };
   ListingEdit: undefined;
   Account: undefined;

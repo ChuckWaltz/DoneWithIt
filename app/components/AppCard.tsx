@@ -1,11 +1,12 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { ImageURISource } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import theme from "../config/theme";
 import AppText from "./AppText";
 
 type Props = {
   title: string;
   subTitle: string;
-  image: ImageSourcePropType;
+  image: ImageURISource;
 };
 
 export default function AppCard({ title, subTitle, image }: Props) {

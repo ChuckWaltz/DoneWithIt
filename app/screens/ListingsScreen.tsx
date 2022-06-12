@@ -1,67 +1,59 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { useEffect, useState } from "react";
+import { FlatList, StyleSheet, View, TouchableOpacity } from "react-native";
 import RootStackParamList from "../navigation/RootStackParamList";
+import AppButton from "../components/AppButton";
 import AppCard from "../components/AppCard";
-
-const listings = [
-  {
-    id: 1,
-    title: "Test 1",
-    description: "Test 1 Subtitle",
-    image: require("../assets/jacket.jpg"),
-    price: 150.0,
-    categoryId: 1,
-  },
-  {
-    id: 2,
-    title: "Test 2",
-    description: "Test 2 Subtitle",
-    image: require("../assets/jacket.jpg"),
-    price: 12.0,
-    categoryId: 2,
-  },
-  {
-    id: 3,
-    title: "Test 3",
-    description: "Test 3 Subtitle",
-    image: require("../assets/jacket.jpg"),
-    price: 20.0,
-    categoryId: 3,
-  },
-];
+import AppText from "../components/AppText";
+import listingsApi from "../api/listings";
+import Listing from "../api/models/listing";
+import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Listings">;
 };
 
 const ListingsScreen = ({ navigation }: Props) => {
-  const [refreshing, setRefreshing] = useState(false);
+  const getListings = useApi(listingsApi.getListings);
+
+  useEffect(() => {
+    getListings.request();
+  }, []);
 
   return (
-    <FlatList
-      data={listings}
-      keyExtractor={(listing) => listing.id.toString()}
-      renderItem={({ item }) => {
-        return (
-          <TouchableWithoutFeedback
-            onPress={() =>
-              navigation.navigate("ListingDetails", { listing: item })
-            }
-          >
-            <AppCard
-              title={item.title}
-              subTitle={item.description}
-              image={item.image}
-            />
-          </TouchableWithoutFeedback>
-        );
-      }}
-      ItemSeparatorComponent={() => <View style={{ height: 20 }}></View>}
-      refreshing={refreshing}
-      contentContainerStyle={styles.container}
-    ></FlatList>
+    <>
+      {getListings.error && (
+        <>
+          <AppText>Something went wrong.</AppText>
+          <AppButton onPress={getListings.request}>Retry</AppButton>
+        </>
+      )}
+      {/* <ActivityIndicator visible={loading} /> */}
+      <FlatList
+        data={getListings.data}
+        keyExtractor={(listing) => listing.id.toString()}
+        renderItem={({ item }: { item: Listing }) => {
+          return (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ListingDetails", { listing: item })
+              }
+              activeOpacity={1}
+            >
+              <AppCard
+                title={item.title}
+                subTitle={item.description}
+                image={{ uri: item.images[0]?.url }}
+              />
+            </TouchableOpacity>
+          );
+        }}
+        ItemSeparatorComponent={() => <View style={{ height: 20 }}></View>}
+        refreshing={getListings.refreshing}
+        contentContainerStyle={styles.container}
+      ></FlatList>
+    </>
   );
 };
 
