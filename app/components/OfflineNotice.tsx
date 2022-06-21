@@ -11,7 +11,7 @@ const OfflineNotice = () => {
   const notConnected =
     netInfo.type !== 'unknown' && netInfo.isInternetReachable === false;
 
-  if (!notConnected)
+  if (notConnected)
     return (
       <View style={styles.container}>
         <AppText style={styles.text}>No Internet Connection</AppText>
