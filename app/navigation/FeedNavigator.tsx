@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ListingDetailsScreen from "../screens/ListingDetailsScreen";
-import ListingsScreen from "../screens/ListingsScreen";
+import ListingDetailsScreen from '../screens/ListingDetailsScreen';
+import ListingsScreen from '../screens/ListingsScreen';
 
 const Stack = createNativeStackNavigator();
 

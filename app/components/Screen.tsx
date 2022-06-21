@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet } from "react-native";
-import Constants from "expo-constants";
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 type Props = { children: React.ReactNode };
 
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingTop: Constants.statusBarHeight,
+    position: 'relative',
   },
 });
 
