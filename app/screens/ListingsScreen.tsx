@@ -1,17 +1,17 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View, TouchableOpacity } from "react-native";
-import RootStackParamList from "../navigation/RootStackParamList";
-import AppButton from "../components/AppButton";
-import AppCard from "../components/AppCard";
-import AppText from "../components/AppText";
-import listingsApi from "../api/listings";
-import Listing from "../api/models/listing";
-import ActivityIndicator from "../components/ActivityIndicator";
-import useApi from "../hooks/useApi";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, View, TouchableOpacity } from 'react-native';
+import RootStackParamList from '../navigation/RootStackParamList';
+import AppButton from '../components/AppButton';
+import AppCard from '../components/AppCard';
+import AppText from '../components/AppText';
+import listingsApi from '../api/listings';
+import Listing from '../api/models/listing';
+import ActivityIndicator from '../components/ActivityIndicator';
+import useApi from '../hooks/useApi';
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, "Listings">;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Listings'>;
 };
 
 const ListingsScreen = ({ navigation }: Props) => {
@@ -29,7 +29,7 @@ const ListingsScreen = ({ navigation }: Props) => {
           <AppButton onPress={getListings.request}>Retry</AppButton>
         </>
       )}
-      {/* <ActivityIndicator visible={loading} /> */}
+      <ActivityIndicator visible={getListings.loading} />
       <FlatList
         data={getListings.data}
         keyExtractor={(listing) => listing.id.toString()}
@@ -37,12 +37,13 @@ const ListingsScreen = ({ navigation }: Props) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("ListingDetails", { listing: item })
+                navigation.navigate('ListingDetails', { listing: item })
               }
               activeOpacity={1}
             >
               <AppCard
                 title={item.title}
+                price={item.price}
                 subTitle={item.description}
                 image={{ uri: item.images[0]?.url }}
               />

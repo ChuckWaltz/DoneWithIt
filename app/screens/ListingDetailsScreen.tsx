@@ -1,13 +1,13 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Image, StyleSheet, View } from "react-native";
-import RootStackParamList from "../navigation/RootStackParamList";
-import AppText from "../components/AppText";
-import theme from "../config/theme";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Image, StyleSheet, View } from 'react-native';
+import RootStackParamList from '../navigation/RootStackParamList';
+import AppText from '../components/AppText';
+import theme from '../config/theme';
 
-type Props = NativeStackScreenProps<RootStackParamList, "ListingDetails">;
+type Props = NativeStackScreenProps<RootStackParamList, 'ListingDetails'>;
 
 export default function ListDetailsScreen({ route }: Props) {
-  const { title, price, images } = route.params.listing;
+  const { title, price, images, description } = route.params.listing;
 
   return (
     <View style={styles.container}>
@@ -18,8 +18,9 @@ export default function ListDetailsScreen({ route }: Props) {
           type="subheader"
           style={{ color: theme.colors.secondary, marginTop: 10 }}
         >
-          {price}
+          ${price}
         </AppText>
+        <AppText style={{ marginTop: 10 }}>{description}</AppText>
       </View>
     </View>
   );
@@ -28,10 +29,10 @@ export default function ListDetailsScreen({ route }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 300,
   },
   detailsContainer: {
