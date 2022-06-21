@@ -1,24 +1,25 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Image, StyleSheet, View } from "react-native";
-import AppText from "../components/AppText";
-import MenuButton from "../components/MenuButton";
-import theme from "../config/theme";
-import RootStackParamList from "../navigation/RootStackParamList";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Image, StyleSheet, View } from 'react-native';
+import AppText from '../components/AppText';
+import MenuButton from '../components/MenuButton';
+import theme from '../config/theme';
+import RootStackParamList from '../navigation/RootStackParamList';
+import useAuth from '../auth/useAuth';
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, "Account">;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Account'>;
 };
 
 const AccountScreen = ({ navigation }: Props) => {
+  const { user, logOut } = useAuth();
+
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
-        <Image source={require("../assets/mosh.jpg")} style={styles.image} />
+        <Image source={require('../assets/mosh.jpg')} style={styles.image} />
         <View style={styles.userInfo}>
-          <AppText style={{ fontSize: 18 }}>Mosh Hamendani</AppText>
-          <AppText style={{ color: theme.colors.medium }}>
-            mosh@gmail.com
-          </AppText>
+          <AppText style={{ fontSize: 18 }}>{user.name}</AppText>
+          <AppText style={{ color: theme.colors.medium }}>{user.email}</AppText>
         </View>
       </View>
       <MenuButton
@@ -33,7 +34,7 @@ const AccountScreen = ({ navigation }: Props) => {
         icon="email"
         color={theme.colors.white}
         backgroundColor={theme.colors.secondary}
-        onPress={() => navigation.navigate("Messages")}
+        onPress={() => navigation.navigate('Messages')}
       >
         My Messages
       </MenuButton>
@@ -42,6 +43,7 @@ const AccountScreen = ({ navigation }: Props) => {
         color={theme.colors.white}
         backgroundColor="#ffe66d"
         style={{ marginTop: 20 }}
+        onPress={() => logOut()}
       >
         Log Out
       </MenuButton>
@@ -52,14 +54,14 @@ const AccountScreen = ({ navigation }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8f4f4",
+    backgroundColor: '#f8f4f4',
   },
   userCard: {
-    flexDirection: "row",
+    flexDirection: 'row',
     backgroundColor: theme.colors.white,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   userInfo: {
     padding: 15,

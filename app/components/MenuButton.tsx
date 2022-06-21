@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet, View, TouchableHighlight } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AppText from "./AppText";
-import theme from "../config/theme";
+import React from 'react';
+import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import AppText from './AppText';
+import theme from '../config/theme';
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const MenuButton = ({
   onPress,
 }: Props) => {
   return (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableHighlight onPress={onPress} underlayColor={'none'}>
       <View style={[styles.wrapper, style]}>
         <MaterialCommunityIcons
           name={icon}
@@ -40,13 +40,13 @@ const MenuButton = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
     backgroundColor: theme.colors.white,
   },
   icon: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: 'dodgerblue',
     padding: 10,
     borderRadius: 50,
   },
