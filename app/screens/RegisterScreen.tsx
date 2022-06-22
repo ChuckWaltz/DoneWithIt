@@ -23,7 +23,7 @@ type Props = {
 };
 
 const RegisterScreen = ({ navigation }: Props) => {
-  const { setUser } = useAuth();
+  const { logIn } = useAuth();
   const [error, setError] = useState<string>();
 
   const handleSubmit = async ({ name, email, password }: any) => {
@@ -32,7 +32,8 @@ const RegisterScreen = ({ navigation }: Props) => {
     if (!result.ok) return setError('Email already exists.');
 
     setError('');
-    setUser(result.data);
+    const { data: authToken } = await authApi.login(email, password);
+    logIn(authToken as string);
   };
 
   return (
